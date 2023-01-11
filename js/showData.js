@@ -1,4 +1,4 @@
-import { connect } from './connect.js';
+import { connectApi } from './connect.js';
 
 const videos__container = document.querySelector('[data-list]');
 
@@ -28,7 +28,7 @@ function createCardVideo(titulo, descricao, url, imagem) {
 }
 
 async function consumeApi() {
-    const apiList = await connect.getData();
+    const apiList = await connectApi.getData();
     apiList.forEach((item) =>
         videos__container.appendChild(
             createCardVideo(item.titulo, item.descricao, item.url, item.imagem)
