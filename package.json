@@ -1,0 +1,11 @@
+{
+    "name": "aluraplay-requisicoes",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/italomagnov/aluraplay-requisicoes.git",
+    "author": "italomagnov <italomagnov@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "json-server": "^0.17.1"
+    }
+}
