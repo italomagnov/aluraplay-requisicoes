@@ -2,7 +2,7 @@ import { connectApi } from './connect.js';
 
 const videos__container = document.querySelector('[data-list]');
 
-function createCardVideo(titulo, descricao, url, imagem) {
+export default function createCardVideo(titulo, descricao, url, imagem) {
     const cardVideo = document.createElement('li');
     cardVideo.className = 'videos__item';
     cardVideo.innerHTML = `<iframe  width="100%" 
@@ -28,12 +28,21 @@ function createCardVideo(titulo, descricao, url, imagem) {
 }
 
 async function consumeApi() {
-    const apiList = await connectApi.getData();
-    apiList.forEach((item) =>
-        videos__container.appendChild(
-            createCardVideo(item.titulo, item.descricao, item.url, item.imagem)
-        )
-    );
+    try {
+        const apiList = await connectApi.getData();
+        apiList.forEach((item) =>
+            videos__container.appendChild(
+                createCardVideo(
+                    item.titulo,
+                    item.descricao,
+                    item.url,
+                    item.imagem
+                )
+            )
+        );
+    } catch {
+        videos__container.innerHTML = `<h2 class='mensagem__titulo'>Nada Encontrado</h2>`;
+    }
 }
 
 consumeApi();

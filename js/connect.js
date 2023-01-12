@@ -20,7 +20,16 @@ async function createVideo(titulo, descricao, url, imagem) {
             imagem: imagem,
         }),
     });
+    if (!apiResponse.ok) {
+        throw new Error('Erro ao tentar inserir um novo vídeo');
+    }
+    const data = await apiResponse.json();
 
+    return data;
+}
+
+async function searchVideo(inputSearch) {
+    const apiResponse = await fetch(`${endpoint}?q=${inputSearch}`);
     const data = await apiResponse.json();
 
     return data;
@@ -29,4 +38,5 @@ async function createVideo(titulo, descricao, url, imagem) {
 export const connectApi = {
     getData,
     createVideo,
+    searchVideo,
 };
